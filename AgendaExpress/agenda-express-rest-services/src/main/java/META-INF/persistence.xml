@@ -8,6 +8,20 @@
 
 		<provider>org.hibernate.ejb.HibernatePersistence</provider>
 		<jta-data-source>jndi/DS_agenda_express</jta-data-source>
+		<class>br.com.agendaexpress.entity.AgendaEntity</class>
+		<class>br.com.agendaexpress.entity.AvaliacaoEntity</class>
+		<class>br.com.agendaexpress.entity.ContatoEntity</class>
+		<class>br.com.agendaexpress.entity.EnderecoEntity</class>
+		<class>br.com.agendaexpress.entity.FeriadoEntity</class>
+		<class>br.com.agendaexpress.entity.FuncionalidadeEntity</class>
+		<class>br.com.agendaexpress.entity.PerfilEntity</class>
+		<class>br.com.agendaexpress.entity.PessoaEntity</class>
+		<class>br.com.agendaexpress.entity.PessoaFisicaEntity</class>
+		<class>br.com.agendaexpress.entity.PessoaJuridicaEntity</class>
+		<class>br.com.agendaexpress.entity.RecomendacaoEntity</class>
+		<class>br.com.agendaexpress.entity.SeguidorEntity</class>
+		<class>br.com.agendaexpress.entity.TipoCompromissoEntity</class>
+		<class>br.com.agendaexpress.entity.UsuarioEntity</class>
 
 		<properties>
 			<property name="hibernate.connection.show_sql" value="true" />

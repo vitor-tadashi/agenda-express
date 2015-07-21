@@ -22,4 +22,5 @@ public class TesteRest {
 		return testeRestService.listHeroes();
 	}
 
+	
 }

@@ -1,6 +1,5 @@
 package br.com.agendaexpress.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -22,12 +21,10 @@ public class TesteRestService {
 	public List<Heroe> listHeroes(HttpServletRequest req,
 			HttpServletResponse resp) {
 
-		List<Heroe> heroes = new ArrayList<Heroe>();
-		heroes.add(new Heroe(1L, "Thresh"));
-		heroes.add(new Heroe(2L, "Blitz"));
-		heroes.add(new Heroe(3L, "Sejuani"));
-		heroes.add(new Heroe(4L, "VI"));
-		return heroes;
+		
+		//List<Heroe> resource = ConsumerFactory.createConsumer( "http://server:port/root", Heroe.class, new CustomProvider());
+		
+		return null;
 	}
 
 }
