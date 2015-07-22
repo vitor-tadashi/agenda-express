@@ -1,7 +1,0 @@
-package br.com.agendaexpress.dao;
-
-import br.com.agendaexpress.entity.UsuarioEntity;
-
-public class UsuarioDAO extends GenericDAO<UsuarioEntity, Integer> {
-
-}

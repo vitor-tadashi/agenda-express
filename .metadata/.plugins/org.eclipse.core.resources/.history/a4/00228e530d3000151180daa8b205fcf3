@@ -1,7 +1,0 @@
-package br.com.agendaexpress.service;
-
-@Service
-@Transactional
-public class UsuarioService {
-
-}

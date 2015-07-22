@@ -7,8 +7,8 @@
 	<packaging>pom</packaging>
 	<modules>
 		<module>agenda-express-commons</module>
-		<module>agenda-express-backoffice-web</module>
 		<module>agenda-express-rest-services</module>
+		<module>agenda-express-backoffice-web</module>
 	</modules>
 	<dependencies>
 		<dependency>

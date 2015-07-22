@@ -1,5 +1,0 @@
-package br.com.agendaexpress.exceptions;
-
-public class ExceptionDAO extends Exception {
-
-}
