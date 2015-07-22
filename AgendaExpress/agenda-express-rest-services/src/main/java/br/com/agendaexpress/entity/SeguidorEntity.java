@@ -18,13 +18,13 @@ public class SeguidorEntity implements Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="ID_PESSOA")
-	private int idPessoa;
+	private Integer idPessoa;
 
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date data;
 
 	@Column(name="ID_PESSOA_SEGUIDOR")
-	private int idPessoaSeguidor;
+	private Integer idPessoaSeguidor;
 
 	//bi-directional one-to-one association to PessoaEntity
 	@OneToOne
@@ -39,11 +39,11 @@ public class SeguidorEntity implements Serializable {
 	public SeguidorEntity() {
 	}
 
-	public int getIdPessoa() {
+	public Integer getIdPessoa() {
 		return this.idPessoa;
 	}
 
-	public void setIdPessoa(int idPessoa) {
+	public void setIdPessoa(Integer idPessoa) {
 		this.idPessoa = idPessoa;
 	}
 
@@ -55,11 +55,11 @@ public class SeguidorEntity implements Serializable {
 		this.data = data;
 	}
 
-	public int getIdPessoaSeguidor() {
+	public Integer getIdPessoaSeguidor() {
 		return this.idPessoaSeguidor;
 	}
 
-	public void setIdPessoaSeguidor(int idPessoaSeguidor) {
+	public void setIdPessoaSeguidor(Integer idPessoaSeguidor) {
 		this.idPessoaSeguidor = idPessoaSeguidor;
 	}
 

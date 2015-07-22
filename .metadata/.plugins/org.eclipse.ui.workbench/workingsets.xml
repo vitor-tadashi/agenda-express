@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<workingSetManager>
+<workingSet editPageId="org.eclipse.ui.resourceWorkingSetPage" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1437524880606_0" label="agenda-express" name="agenda-express">
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/AgendaExpress/pom.xml" type="1"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/agenda-express-backoffice-web/.classpath" type="1"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/agenda-express-backoffice-web/pom.xml" type="1"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/agenda-express-backoffice-web/src" type="2"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/agenda-express-commons/.classpath" type="1"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/agenda-express-commons/pom.xml" type="1"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/agenda-express-commons/src" type="2"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/agenda-express-rest-services/.classpath" type="1"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/agenda-express-rest-services/pom.xml" type="1"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/agenda-express-rest-services/src" type="2"/>
+</workingSet>
+<workingSet aggregate="true" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1437526233408_1" label="Window Working Set" name="Aggregate for window 1437526233408"/>
+<mruList name="agenda-express"/>
+</workingSetManager>

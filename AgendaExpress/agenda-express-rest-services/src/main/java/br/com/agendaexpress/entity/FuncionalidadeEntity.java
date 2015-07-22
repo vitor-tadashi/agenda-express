@@ -17,7 +17,7 @@ public class FuncionalidadeEntity implements Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="ID_FUNCIONALIDADE")
-	private int idFuncionalidade;
+	private Integer idFuncionalidade;
 
 	private String descricao;
 
@@ -29,11 +29,11 @@ public class FuncionalidadeEntity implements Serializable {
 	public FuncionalidadeEntity() {
 	}
 
-	public int getIdFuncionalidade() {
+	public Integer getIdFuncionalidade() {
 		return this.idFuncionalidade;
 	}
 
-	public void setIdFuncionalidade(int idFuncionalidade) {
+	public void setIdFuncionalidade(Integer idFuncionalidade) {
 		this.idFuncionalidade = idFuncionalidade;
 	}
 

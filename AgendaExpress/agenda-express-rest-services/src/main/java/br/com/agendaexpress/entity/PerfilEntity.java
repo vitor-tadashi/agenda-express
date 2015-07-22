@@ -18,7 +18,7 @@ public class PerfilEntity implements Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="ID_PERFIL")
-	private int idPerfil;
+	private Integer idPerfil;
 
 	private String tipo;
 
@@ -29,11 +29,11 @@ public class PerfilEntity implements Serializable {
 	public PerfilEntity() {
 	}
 
-	public int getIdPerfil() {
+	public Integer getIdPerfil() {
 		return this.idPerfil;
 	}
 
-	public void setIdPerfil(int idPerfil) {
+	public void setIdPerfil(Integer idPerfil) {
 		this.idPerfil = idPerfil;
 	}
 

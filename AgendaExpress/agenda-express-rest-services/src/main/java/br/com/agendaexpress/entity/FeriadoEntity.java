@@ -18,7 +18,7 @@ public class FeriadoEntity implements Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="ID_FERIADO")
-	private int idFeriado;
+	private Integer idFeriado;
 
 	@Temporal(TemporalType.DATE)
 	private Date data;
@@ -28,11 +28,11 @@ public class FeriadoEntity implements Serializable {
 	public FeriadoEntity() {
 	}
 
-	public int getIdFeriado() {
+	public Integer getIdFeriado() {
 		return this.idFeriado;
 	}
 
-	public void setIdFeriado(int idFeriado) {
+	public void setIdFeriado(Integer idFeriado) {
 		this.idFeriado = idFeriado;
 	}
 

@@ -17,12 +17,12 @@ public class ContatoEntity implements Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="ID_CONTATO")
-	private int idContato;
+	private Integer idContato;
 
 	private String email;
 
 	@Column(name="ID_PESSOA")
-	private int idPessoa;
+	private Integer idPessoa;
 
 	private String telefone;
 
@@ -32,11 +32,11 @@ public class ContatoEntity implements Serializable {
 	public ContatoEntity() {
 	}
 
-	public int getIdContato() {
+	public Integer getIdContato() {
 		return this.idContato;
 	}
 
-	public void setIdContato(int idContato) {
+	public void setIdContato(Integer idContato) {
 		this.idContato = idContato;
 	}
 
@@ -48,11 +48,11 @@ public class ContatoEntity implements Serializable {
 		this.email = email;
 	}
 
-	public int getIdPessoa() {
+	public Integer getIdPessoa() {
 		return this.idPessoa;
 	}
 
-	public void setIdPessoa(int idPessoa) {
+	public void setIdPessoa(Integer idPessoa) {
 		this.idPessoa = idPessoa;
 	}
 

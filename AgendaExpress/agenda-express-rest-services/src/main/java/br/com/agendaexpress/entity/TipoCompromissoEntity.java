@@ -17,18 +17,18 @@ public class TipoCompromissoEntity implements Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="ID_TIPO_COMPROMISSO")
-	private int idTipoCompromisso;
+	private Integer idTipoCompromisso;
 
 	private String descricao;
 
 	public TipoCompromissoEntity() {
 	}
 
-	public int getIdTipoCompromisso() {
+	public Integer getIdTipoCompromisso() {
 		return this.idTipoCompromisso;
 	}
 
-	public void setIdTipoCompromisso(int idTipoCompromisso) {
+	public void setIdTipoCompromisso(Integer idTipoCompromisso) {
 		this.idTipoCompromisso = idTipoCompromisso;
 	}
 

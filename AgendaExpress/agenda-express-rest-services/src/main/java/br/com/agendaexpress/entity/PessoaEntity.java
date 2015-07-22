@@ -18,7 +18,7 @@ public class PessoaEntity implements Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="ID_PESSOA")
-	private int idPessoa;
+	private Integer idPessoa;
 
 	@Column(name="ID_ENDERECO")
 	private String idEndereco;
@@ -58,11 +58,11 @@ public class PessoaEntity implements Serializable {
 	public PessoaEntity() {
 	}
 
-	public int getIdPessoa() {
+	public Integer getIdPessoa() {
 		return this.idPessoa;
 	}
 
-	public void setIdPessoa(int idPessoa) {
+	public void setIdPessoa(Integer idPessoa) {
 		this.idPessoa = idPessoa;
 	}
 

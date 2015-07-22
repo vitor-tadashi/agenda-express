@@ -17,7 +17,7 @@ public class PessoaFisicaEntity implements Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="ID_PESSOA")
-	private int idPessoa;
+	private Integer idPessoa;
 
 	private String cpf;
 
@@ -31,11 +31,11 @@ public class PessoaFisicaEntity implements Serializable {
 	public PessoaFisicaEntity() {
 	}
 
-	public int getIdPessoa() {
+	public Integer getIdPessoa() {
 		return this.idPessoa;
 	}
 
-	public void setIdPessoa(int idPessoa) {
+	public void setIdPessoa(Integer idPessoa) {
 		this.idPessoa = idPessoa;
 	}
 

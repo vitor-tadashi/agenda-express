@@ -1,0 +1,18 @@
+package br.com.agendaexpress.service;
+
+import ma.glasnost.orika.MapperFactory;
+import ma.glasnost.orika.impl.DefaultMapperFactory;
+
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import br.com.agendaexpress.beans.PessoaFisicaBean;
+
+@Service
+@Transactional
+public class UsuarioService {
+	
+	public void addUsuario(PessoaFisicaBean pessoaFisicaBean){
+		MapperFactory mapperFactory = new DefaultMapperFactory.Builder().build();
+	}
+}

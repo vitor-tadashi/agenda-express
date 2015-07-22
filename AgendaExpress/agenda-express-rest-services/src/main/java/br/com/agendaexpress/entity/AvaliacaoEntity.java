@@ -17,10 +17,10 @@ public class AvaliacaoEntity implements Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="ID_AVALIACAO")
-	private int idAvaliacao;
+	private Integer idAvaliacao;
 
 	@Column(name="QTD_ESTRELAS")
-	private int qtdEstrelas;
+	private Integer qtdEstrelas;
 
 	//bi-directional many-to-one association to PessoaEntity
 	@ManyToOne
@@ -30,19 +30,19 @@ public class AvaliacaoEntity implements Serializable {
 	public AvaliacaoEntity() {
 	}
 
-	public int getIdAvaliacao() {
+	public Integer getIdAvaliacao() {
 		return this.idAvaliacao;
 	}
 
-	public void setIdAvaliacao(int idAvaliacao) {
+	public void setIdAvaliacao(Integer idAvaliacao) {
 		this.idAvaliacao = idAvaliacao;
 	}
 
-	public int getQtdEstrelas() {
+	public Integer getQtdEstrelas() {
 		return this.qtdEstrelas;
 	}
 
-	public void setQtdEstrelas(int qtdEstrelas) {
+	public void setQtdEstrelas(Integer qtdEstrelas) {
 		this.qtdEstrelas = qtdEstrelas;
 	}
 

@@ -1,0 +1,7 @@
+INDEX VERSION 1.3+E:\AgendaExpress\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
+3200882661.index
+2188942783.index
+431490056.index
+1881641948.index
+2690378924.index
+2324379700.index

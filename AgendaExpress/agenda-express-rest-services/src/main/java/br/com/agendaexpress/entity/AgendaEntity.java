@@ -17,7 +17,7 @@ public class AgendaEntity implements Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="ID_AGENDA")
-	private int idAgenda;
+	private Integer idAgenda;
 
 	//bi-directional many-to-one association to PessoaEntity
 	@ManyToOne
@@ -27,11 +27,11 @@ public class AgendaEntity implements Serializable {
 	public AgendaEntity() {
 	}
 
-	public int getIdAgenda() {
+	public Integer getIdAgenda() {
 		return this.idAgenda;
 	}
 
-	public void setIdAgenda(int idAgenda) {
+	public void setIdAgenda(Integer idAgenda) {
 		this.idAgenda = idAgenda;
 	}
 

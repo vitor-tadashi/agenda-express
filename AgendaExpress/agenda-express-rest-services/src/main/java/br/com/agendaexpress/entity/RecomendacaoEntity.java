@@ -17,7 +17,7 @@ public class RecomendacaoEntity implements Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="ID_RECOMENDACAO")
-	private int idRecomendacao;
+	private Integer idRecomendacao;
 
 	//bi-directional many-to-one association to PessoaEntity
 	@ManyToOne
@@ -27,11 +27,11 @@ public class RecomendacaoEntity implements Serializable {
 	public RecomendacaoEntity() {
 	}
 
-	public int getIdRecomendacao() {
+	public Integer getIdRecomendacao() {
 		return this.idRecomendacao;
 	}
 
-	public void setIdRecomendacao(int idRecomendacao) {
+	public void setIdRecomendacao(Integer idRecomendacao) {
 		this.idRecomendacao = idRecomendacao;
 	}
 

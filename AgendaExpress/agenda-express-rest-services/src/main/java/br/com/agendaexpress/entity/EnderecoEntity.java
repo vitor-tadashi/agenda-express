@@ -17,7 +17,7 @@ public class EnderecoEntity implements Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="ID_ENDERECO")
-	private int idEndereco;
+	private Integer idEndereco;
 
 	private String bairro;
 
@@ -26,10 +26,10 @@ public class EnderecoEntity implements Serializable {
 	private String complemento;
 
 	@Column(name="ID_CIDADE")
-	private int idCidade;
+	private Integer idCidade;
 
 	@Column(name="ID_ESTADO")
-	private int idEstado;
+	private Integer idEstado;
 
 	private String logradouro;
 
@@ -38,11 +38,11 @@ public class EnderecoEntity implements Serializable {
 	public EnderecoEntity() {
 	}
 
-	public int getIdEndereco() {
+	public Integer getIdEndereco() {
 		return this.idEndereco;
 	}
 
-	public void setIdEndereco(int idEndereco) {
+	public void setIdEndereco(Integer idEndereco) {
 		this.idEndereco = idEndereco;
 	}
 
@@ -70,19 +70,19 @@ public class EnderecoEntity implements Serializable {
 		this.complemento = complemento;
 	}
 
-	public int getIdCidade() {
+	public Integer getIdCidade() {
 		return this.idCidade;
 	}
 
-	public void setIdCidade(int idCidade) {
+	public void setIdCidade(Integer idCidade) {
 		this.idCidade = idCidade;
 	}
 
-	public int getIdEstado() {
+	public Integer getIdEstado() {
 		return this.idEstado;
 	}
 
-	public void setIdEstado(int idEstado) {
+	public void setIdEstado(Integer idEstado) {
 		this.idEstado = idEstado;
 	}
 
