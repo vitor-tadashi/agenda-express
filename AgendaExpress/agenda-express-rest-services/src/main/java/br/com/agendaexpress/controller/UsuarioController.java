@@ -23,11 +23,33 @@ public class UsuarioController {
 	private UsuarioService usuarioService;
 	
 	@RequestMapping(value = "/add", method = RequestMethod.POST, headers = "Content-Type=application/json", consumes = "application/json", produces = "application/json")
-	public @ResponseBody void addPerson(ModelMap modelMap,
+	public @ResponseBody void addUsuario(ModelMap modelMap,
 			HttpServletResponse resp, HttpServletRequest request,
 			@RequestBody(required = true) UsuarioBean usuarioBean){
 		try {
 			usuarioService.addUsuario(usuarioBean);
+		} catch (ExceptionDAO e) {
+			e.printStackTrace();//TODO
+		}
+	}
+	
+	@RequestMapping(value = "/delete", method = RequestMethod.POST, headers = "Content-Type=application/json", consumes = "application/json", produces = "application/json")
+	public @ResponseBody void deleteUsuario(ModelMap modelMap,
+			HttpServletResponse resp, HttpServletRequest request,
+			@RequestBody(required = true) Integer id){
+		try {
+			usuarioService.delUsuario(id);
+		} catch (ExceptionDAO e) {
+			e.printStackTrace();//TODO
+		}
+	}
+	
+	@RequestMapping(value = "/update", method = RequestMethod.POST, headers = "Content-Type=application/json", consumes = "application/json", produces = "application/json")
+	public @ResponseBody void updateUsuario(ModelMap modelMap,
+			HttpServletResponse resp, HttpServletRequest request,
+			@RequestBody(required = true) UsuarioBean usuarioBean){
+		try {
+			usuarioService.updateUsuario(usuarioBean);
 		} catch (ExceptionDAO e) {
 			e.printStackTrace();//TODO
 		}
