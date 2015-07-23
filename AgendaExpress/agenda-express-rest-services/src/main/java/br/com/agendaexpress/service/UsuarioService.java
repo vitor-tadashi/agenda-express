@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import br.com.agendaexpress.beans.UsuarioBean;
-import br.com.agendaexpress.commons.util.FilterQueryUtil;
 import br.com.agendaexpress.dao.UsuarioDAO;
 import br.com.agendaexpress.entity.UsuarioEntity;
 import br.com.agendaexpress.exceptions.ExceptionDAO;
