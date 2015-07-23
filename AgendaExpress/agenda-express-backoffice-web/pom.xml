@@ -7,11 +7,62 @@
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
 	<artifactId>agenda-express-backoffice-web</artifactId>
+	<properties>
+		<log4j.version>1.2.17</log4j.version>
+		<slf4j.version>1.7.5</slf4j.version>
+		<jetty.version>7.6.9.v20130131</jetty.version>
+		<jsp.version>2.1.v20100127</jsp.version>
+		<jstl.version>1.2</jstl.version>
+	</properties>
 	<dependencies>
 		<dependency>
 			<groupId>br.com.agendaexpress</groupId>
 			<artifactId>agenda-express-commons</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>${log4j.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+			<version>${slf4j.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.eclipse.jetty.aggregate</groupId>
+			<artifactId>jetty-all</artifactId>
+			<version>${jetty.version}</version>
+			<scope>test</scope>
+			<exclusions>
+				<exclusion>
+					<groupId>org.apache.geronimo.specs</groupId>
+					<artifactId>geronimo-jaspic</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.apache.geronimo.genesis</groupId>
+					<artifactId>genesis-java1.4-flava</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>org.eclipse.jetty</groupId>
+			<artifactId>jetty-webapp</artifactId>
+			<version>${jetty.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.mortbay.jetty</groupId>
+			<artifactId>jsp-2.1-glassfish</artifactId>
+			<version>${jsp.version}</version>
+			<scope>test</scope>
+		</dependency> 
+		
+		<dependency>
+			<groupId>jstl</groupId>
+			<artifactId>jstl</artifactId>
+			<version>${jstl.version}</version>
 		</dependency>
 	</dependencies>
 	<packaging>war</packaging>
