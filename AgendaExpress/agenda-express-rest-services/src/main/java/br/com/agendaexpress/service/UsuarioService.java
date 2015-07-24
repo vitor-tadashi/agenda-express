@@ -56,5 +56,4 @@ public class UsuarioService {
 					UsuarioBean.class);
 		}
 	}
-
 }
