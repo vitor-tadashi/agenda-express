@@ -4,9 +4,11 @@ import java.util.List;
 
 import javax.persistence.TypedQuery;
 
+import org.springframework.stereotype.Repository;
+
 import br.com.agendaexpress.commons.util.FilterQueryUtil;
 import br.com.agendaexpress.entity.TipoCompromissoEntity;
-
+@Repository
 public class CompromissoDAO extends GenericDAO<TipoCompromissoEntity, Integer>{
 	
 	public List<TipoCompromissoEntity> findCompromisso(TipoCompromissoEntity tipoCompromissoEntity) {
