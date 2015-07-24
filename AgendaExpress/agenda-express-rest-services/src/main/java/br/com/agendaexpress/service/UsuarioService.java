@@ -67,5 +67,4 @@ public class UsuarioService {
 			return mapper.mapAsList(listUsuarios, UsuarioBean.class);
 		}
 	}
-
 }
