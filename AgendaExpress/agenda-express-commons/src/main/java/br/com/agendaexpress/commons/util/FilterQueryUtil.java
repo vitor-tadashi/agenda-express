@@ -8,6 +8,8 @@ import java.util.Map;
 
 import javax.persistence.TypedQuery;
 
+import br.com.agendaexpress.beans.UsuarioBean;
+
 public class FilterQueryUtil<Entity> {
 
 	private String alias;
@@ -22,7 +24,8 @@ public class FilterQueryUtil<Entity> {
 		try {
 			StringBuilder sb = new StringBuilder();
 			sb.append("FROM ");
-			sb.append(Class.forName(entity.getClass().getName()));
+			sb.append(Class.forName(entity.getClass().getName()).getSimpleName());
+			sb.append(" ");
 			sb.append(alias);
 			sb.append(" WHERE 1=1");
 			Field[] fields = Class.forName(entity.getClass().getName())

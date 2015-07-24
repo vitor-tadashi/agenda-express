@@ -1,5 +1,8 @@
 package br.com.agendaexpress.service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import ma.glasnost.orika.MapperFacade;
 import ma.glasnost.orika.impl.DefaultMapperFactory;
 
@@ -44,16 +47,24 @@ public class UsuarioService {
 		}
 	}
 
-	public UsuarioBean findUsuario(UsuarioBean usuarioBean) throws ExceptionDAO {
+	public List<UsuarioBean> findUsuarioByFilter(UsuarioBean usuarioBean)
+			throws ExceptionDAO {
 		if (usuarioBean.getIdUsuario() != null) {
 			UsuarioEntity usuarioEntity = usuarioDAO.findById(usuarioBean
 					.getIdUsuario());
-			return mapper.map(usuarioEntity, UsuarioBean.class);
+			UsuarioBean bean = mapper.map(usuarioEntity, UsuarioBean.class);
+			if (bean != null) {
+				List<UsuarioBean> list = new ArrayList<UsuarioBean>();
+				list.add(bean);
+				return list;
+			}
+			return null;
 		} else {
 			UsuarioEntity usuarioEntity = mapper.map(usuarioBean,
 					UsuarioEntity.class);
-			return mapper.map(usuarioDAO.findUsuario(usuarioEntity),
-					UsuarioBean.class);
+			List<UsuarioEntity> listUsuarios = usuarioDAO
+					.findUsuario(usuarioEntity);
+			return mapper.mapAsList(listUsuarios, UsuarioBean.class);
 		}
 	}
 

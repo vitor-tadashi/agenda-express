@@ -17,36 +17,26 @@
 
 	<mvc:annotation-driven />
 
-
-	<!-- JSON Support -->
-	<bean name="viewResolver"
-		class="org.springframework.web.servlet.view.BeanNameViewResolver" />
-	<bean name="jsonTemplate"
-		class="org.springframework.web.servlet.view.json.MappingJackson2JsonView" />
-
 	<bean id="springContextHolder" class="br.com.agendaexpress.commons.util.SpringContextHolder" />
 
 	<jee:jndi-lookup id="dataSourceOracle" jndi-name="jndi/DS_agenda_express"
 		resource-ref="true" />
 
-	<bean id="entityManagerFactory"
-		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
-		<property name="persistenceUnitName" value="agendaExpressPersistenceUnit" />
-		<property name="dataSource" ref="dataSourceOracle" />
-
-	</bean>
 	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
 		<property name="entityManagerFactory" ref="entityManagerFactory" />
+		<property name="dataSource" ref="dataSourceOracle" />
+	</bean>
+
+	<bean id="entityManagerFactory"
+		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean"
+		scope="singleton">
+		<property name="dataSource" ref="dataSourceOracle" />
+		<property name="packagesToScan" value="br.com.agendaexpress" />
+		<property name="jpaVendorAdapter">
+			<bean id="hibernateJpaVendorAdapter"
+				class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter" />
+		</property>
 	</bean>
 
 
-
-
-
-
-	<!-- <bean id="jsonConverter" class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter"> 
-		<property name="supportedMediaTypes" value="application/json" /> </bean> 
-		<bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter"> 
-		<property name="messageConverters"> <list> <ref bean="jsonConverter" /> <ref 
-		bean="stringHttpMessageConverter" /> </list> </property> </bean> -->
 </beans>

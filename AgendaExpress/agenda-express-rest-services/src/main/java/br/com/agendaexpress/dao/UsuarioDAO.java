@@ -1,5 +1,6 @@
 package br.com.agendaexpress.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.TypedQuery;
@@ -19,7 +20,10 @@ public class UsuarioDAO extends GenericDAO<UsuarioEntity, Integer> {
 		TypedQuery<UsuarioEntity> query = em.createQuery(queryStr,
 				UsuarioEntity.class);
 		query = filterUtil.fillQueryParameters(query);
-
-		return query.getResultList();
+		List<UsuarioEntity> result = query.getResultList();
+		if(result != null && result.isEmpty()){
+			return null;
+		}
+		return result;
 	}
 }

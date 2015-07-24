@@ -1,5 +1,8 @@
 package br.com.agendaexpress.beans;
 
+import org.codehaus.jackson.annotate.JsonCreator;
+import org.codehaus.jackson.annotate.JsonProperty;
+
 public class UsuarioBean {
 	private Integer idUsuario;
 
@@ -10,6 +13,24 @@ public class UsuarioBean {
 	private String login;
 
 	private String senha;
+	
+	public UsuarioBean(){
+		
+	}
+	@JsonCreator
+	public UsuarioBean(@JsonProperty("email") String email){
+		this.email = email;
+	}
+	
+	public UsuarioBean(Integer idUsuario, String email, byte[] imagemUsuario,
+			String login, String senha) {
+		super();
+		this.idUsuario = idUsuario;
+		this.email = email;
+		this.imagemUsuario = imagemUsuario;
+		this.login = login;
+		this.senha = senha;
+	}
 
 	public Integer getIdUsuario() {
 		return idUsuario;
@@ -50,5 +71,6 @@ public class UsuarioBean {
 	public void setSenha(String senha) {
 		this.senha = senha;
 	}
+	
 
 }
