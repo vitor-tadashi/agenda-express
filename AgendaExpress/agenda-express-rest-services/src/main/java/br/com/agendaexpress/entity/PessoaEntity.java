@@ -4,58 +4,68 @@ import java.io.Serializable;
 import javax.persistence.*;
 import java.util.List;
 
-
 /**
  * The persistent class for the tb_pessoa database table.
  * 
  */
 @Entity
-@Table(name="tb_pessoa")
-@NamedQuery(name="PessoaEntity.findAll", query="SELECT p FROM PessoaEntity p")
+@Table(name = "tb_pessoa")
+@NamedQuery(name = "PessoaEntity.findAll", query = "SELECT p FROM PessoaEntity p")
 public class PessoaEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(name="ID_PESSOA")
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "ID_PESSOA")
 	private Integer idPessoa;
 
-	@Column(name="ID_ENDERECO")
+	@Column(name = "ID_ENDERECO")
 	private String idEndereco;
 
-	//bi-directional many-to-one association to AgendaEntity
-	@OneToMany(mappedBy="tbPessoa")
+	@OneToOne(mappedBy = "pessoaEntity")
+	private UsuarioEntity usuarioEntity;
+
+	// bi-directional many-to-one association to AgendaEntity
+	@OneToMany(mappedBy = "tbPessoa")
 	private List<AgendaEntity> tbAgendas;
 
-	//bi-directional many-to-one association to AvaliacaoEntity
-	@OneToMany(mappedBy="tbPessoa")
+	// bi-directional many-to-one association to AvaliacaoEntity
+	@OneToMany(mappedBy = "tbPessoa")
 	private List<AvaliacaoEntity> tbAvaliacaos;
 
-	//bi-directional one-to-one association to PessoaFisicaEntity
-	@OneToOne(mappedBy="tbPessoa")
+	// bi-directional one-to-one association to PessoaFisicaEntity
+	@OneToOne(mappedBy = "tbPessoa")
 	private PessoaFisicaEntity tbPessoaFisica;
 
-	//bi-directional one-to-one association to PessoaJuridicaEntity
-	@OneToOne(mappedBy="tbPessoa")
+	// bi-directional one-to-one association to PessoaJuridicaEntity
+	@OneToOne(mappedBy = "tbPessoa")
 	private PessoaJuridicaEntity tbPessoaJuridica;
 
-	//bi-directional many-to-many association to PessoaJuridicaEntity
-	@ManyToMany(mappedBy="tbPessoas")
+	// bi-directional many-to-many association to PessoaJuridicaEntity
+	@ManyToMany(mappedBy = "tbPessoas")
 	private List<PessoaJuridicaEntity> tbPessoaJuridicas;
 
-	//bi-directional many-to-one association to RecomendacaoEntity
-	@OneToMany(mappedBy="tbPessoa")
+	// bi-directional many-to-one association to RecomendacaoEntity
+	@OneToMany(mappedBy = "tbPessoa")
 	private List<RecomendacaoEntity> tbRecomendacaos;
 
-	//bi-directional one-to-one association to SeguidorEntity
-	@OneToOne(mappedBy="tbPessoa1")
+	// bi-directional one-to-one association to SeguidorEntity
+	@OneToOne(mappedBy = "tbPessoa1")
 	private SeguidorEntity tbSeguidor1;
 
-	//bi-directional one-to-one association to SeguidorEntity
-	@OneToOne(mappedBy="tbPessoa2")
+	// bi-directional one-to-one association to SeguidorEntity
+	@OneToOne(mappedBy = "tbPessoa2")
 	private SeguidorEntity tbSeguidor2;
 
 	public PessoaEntity() {
+	}
+
+	public UsuarioEntity getUsuarioEntity() {
+		return usuarioEntity;
+	}
+
+	public void setUsuarioEntity(UsuarioEntity usuarioEntity) {
+		this.usuarioEntity = usuarioEntity;
 	}
 
 	public Integer getIdPessoa() {
@@ -138,7 +148,8 @@ public class PessoaEntity implements Serializable {
 		return this.tbPessoaJuridicas;
 	}
 
-	public void setTbPessoaJuridicas(List<PessoaJuridicaEntity> tbPessoaJuridicas) {
+	public void setTbPessoaJuridicas(
+			List<PessoaJuridicaEntity> tbPessoaJuridicas) {
 		this.tbPessoaJuridicas = tbPessoaJuridicas;
 	}
 
@@ -150,14 +161,16 @@ public class PessoaEntity implements Serializable {
 		this.tbRecomendacaos = tbRecomendacaos;
 	}
 
-	public RecomendacaoEntity addTbRecomendacao(RecomendacaoEntity tbRecomendacao) {
+	public RecomendacaoEntity addTbRecomendacao(
+			RecomendacaoEntity tbRecomendacao) {
 		getTbRecomendacaos().add(tbRecomendacao);
 		tbRecomendacao.setTbPessoa(this);
 
 		return tbRecomendacao;
 	}
 
-	public RecomendacaoEntity removeTbRecomendacao(RecomendacaoEntity tbRecomendacao) {
+	public RecomendacaoEntity removeTbRecomendacao(
+			RecomendacaoEntity tbRecomendacao) {
 		getTbRecomendacaos().remove(tbRecomendacao);
 		tbRecomendacao.setTbPessoa(null);
 

@@ -7,7 +7,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /**
@@ -30,10 +32,16 @@ public class UsuarioEntity implements Serializable {
 	@Column(name = "IMAGEM_USUARIO")
 	private byte[] imagemUsuario;
 
+	@Column(name = "LOGIN")
 	private String login;
 
+	@Column(name = "SENHA")
 	private String senha;
 
+	@OneToOne
+	@JoinColumn(name="ID_PESSOA")
+	private PessoaEntity pessoaEntity;
+	
 	public UsuarioEntity() {
 	}
 
