@@ -5,6 +5,8 @@ import java.util.List;
 
 import ma.glasnost.orika.MapperFacade;
 import ma.glasnost.orika.impl.DefaultMapperFactory;
+import ma.glasnost.orika.property.IntrospectorPropertyResolver;
+import ma.glasnost.orika.property.PropertyResolverStrategy;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,7 +24,7 @@ public class UsuarioService {
 	@Autowired
 	private UsuarioDAO usuarioDAO;
 
-	private MapperFacade mapper = new DefaultMapperFactory.Builder().build()
+	private MapperFacade mapper = new DefaultMapperFactory.Builder().mapNulls(false).build()
 			.getMapperFacade();
 
 	public UsuarioService() {
@@ -31,6 +33,7 @@ public class UsuarioService {
 	public void addUsuario(UsuarioBean usuarioBean) throws ExceptionDAO {
 		UsuarioEntity usuarioEntity = mapper.map(usuarioBean,
 				UsuarioEntity.class);
+		
 		usuarioDAO.save(usuarioEntity);
 	}
 
@@ -42,7 +45,7 @@ public class UsuarioService {
 		UsuarioEntity usuarioEntity = usuarioDAO.findById(usuarioBean
 				.getIdUsuario());
 		if (usuarioEntity != null) {
-			usuarioEntity = mapper.map(usuarioBean, UsuarioEntity.class);
+			mapper.map(usuarioBean, usuarioEntity);
 			usuarioDAO.update(usuarioEntity);
 		}
 	}
@@ -52,6 +55,7 @@ public class UsuarioService {
 		if (usuarioBean.getIdUsuario() != null) {
 			UsuarioEntity usuarioEntity = usuarioDAO.findById(usuarioBean
 					.getIdUsuario());
+			
 			UsuarioBean bean = mapper.map(usuarioEntity, UsuarioBean.class);
 			if (bean != null) {
 				List<UsuarioBean> list = new ArrayList<UsuarioBean>();
@@ -64,7 +68,11 @@ public class UsuarioService {
 					UsuarioEntity.class);
 			List<UsuarioEntity> listUsuarios = usuarioDAO
 					.findUsuario(usuarioEntity);
+			if(listUsuarios == null){
+				return null;
+			}
 			return mapper.mapAsList(listUsuarios, UsuarioBean.class);
 		}
 	}
+	
 }
