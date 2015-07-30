@@ -1,3 +1,8 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -38,14 +43,14 @@
 					</div>
 				</div>
 				<div class="panel-body">
-					<form class="form-login">
+					<form class="form-login" action="<c:url value="login"/>" method="post">
 						<div class="form-group">
 							<label>Username</label>
-							<input type="text" placeholder="Username" class="form-control input-sm bounceIn animation-delay2" >
+							<input type="text" placeholder="Username" class="form-control input-sm bounceIn animation-delay2" name="login">
 						</div>
 						<div class="form-group">
 							<label>Password</label>
-							<input type="password" placeholder="Password" class="form-control input-sm bounceIn animation-delay4">
+							<input type="password" placeholder="Password" class="form-control input-sm bounceIn animation-delay4" name="password">
 						</div>
 						<div class="form-group">
 							<label class="label-checkbox inline">
@@ -63,7 +68,7 @@
 
 						<hr/>
 							
-						<a class="btn btn-success btn-sm bounceIn animation-delay5 login-link pull-right" href="index.html"><i class="fa fa-sign-in"></i> Sign in</a>
+						<a class="btn btn-success btn-sm bounceIn animation-delay5 login-link pull-right" type="submit"><i class="fa fa-sign-in"></i> Sign in</a>
 					</form>
 				</div>
 			</div><!-- /panel -->

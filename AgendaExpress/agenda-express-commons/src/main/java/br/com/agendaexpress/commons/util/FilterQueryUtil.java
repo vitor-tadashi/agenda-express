@@ -8,8 +8,6 @@ import java.util.Map;
 
 import javax.persistence.TypedQuery;
 
-import br.com.agendaexpress.beans.UsuarioBean;
-
 public class FilterQueryUtil<Entity> {
 
 	private String alias;
