@@ -12,6 +12,7 @@ public class RestException extends Exception implements Serializable {
 
 	public RestException(String msg) {
 		this.msg = msg;
+		
 	}
 
 	public RestException(Integer codigoErro, String message) {

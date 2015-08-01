@@ -1,8 +1,15 @@
 package br.com.agendaexpress.entity;
 
 import java.io.Serializable;
-import javax.persistence.*;
 import java.util.Date;
+
+import javax.persistence.EmbeddedId;
+import javax.persistence.Entity;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 
 /**
@@ -11,7 +18,6 @@ import java.util.Date;
  */
 @Entity
 @Table(name="tb_seguidor")
-@NamedQuery(name="TbSeguidor.findAll", query="SELECT t FROM TbSeguidor t")
 public class SeguidorEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
 

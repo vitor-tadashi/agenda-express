@@ -111,6 +111,7 @@ public class UsuarioController {
 		return Response.status(200).entity(usuario).build();
 	}
 
+	//add
 	/*
 	 * var usuario = new Object(); var pessoa = new Object(); var pessoaFisica =
 	 * new Object();
@@ -124,4 +125,10 @@ public class UsuarioController {
 	 * JSON.stringify(usuario);
 	 */
 
+/*	seguir
+	var seguirBean = new Object();
+	seguirBean.idUsuarioSeguidor = 1;
+	seguirBean.idUsuario=1;
+	JSON.stringify(seguirBean);
+*/
 }

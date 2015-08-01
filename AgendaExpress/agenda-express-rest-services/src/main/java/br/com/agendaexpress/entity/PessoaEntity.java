@@ -49,14 +49,6 @@ public class PessoaEntity implements Serializable {
 	@OneToMany(mappedBy = "tbPessoa")
 	private List<RecomendacaoEntity> tbRecomendacaos;
 
-	// bi-directional one-to-one association to SeguidorEntity
-	@OneToOne(mappedBy = "tbPessoa1")
-	private SeguidorEntity tbSeguidor1;
-
-	// bi-directional one-to-one association to SeguidorEntity
-	@OneToOne(mappedBy = "tbPessoa2")
-	private SeguidorEntity tbSeguidor2;
-
 	public PessoaEntity() {
 	}
 
@@ -177,20 +169,5 @@ public class PessoaEntity implements Serializable {
 		return tbRecomendacao;
 	}
 
-	public SeguidorEntity getTbSeguidor1() {
-		return this.tbSeguidor1;
-	}
-
-	public void setTbSeguidor1(SeguidorEntity tbSeguidor1) {
-		this.tbSeguidor1 = tbSeguidor1;
-	}
-
-	public SeguidorEntity getTbSeguidor2() {
-		return this.tbSeguidor2;
-	}
-
-	public void setTbSeguidor2(SeguidorEntity tbSeguidor2) {
-		this.tbSeguidor2 = tbSeguidor2;
-	}
 
 }
