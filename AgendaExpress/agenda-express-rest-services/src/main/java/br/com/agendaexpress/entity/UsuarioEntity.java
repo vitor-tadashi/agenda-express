@@ -38,10 +38,13 @@ public class UsuarioEntity implements Serializable {
 	@Column(name = "SENHA")
 	private String senha;
 
+	@Column(name = "ATIVO")
+	private String ativo;
+
 	@OneToOne
-	@JoinColumn(name="ID_PESSOA")
+	@JoinColumn(name = "ID_PESSOA")
 	private PessoaEntity pessoaEntity;
-	
+
 	public UsuarioEntity() {
 	}
 
@@ -83,6 +86,22 @@ public class UsuarioEntity implements Serializable {
 
 	public void setSenha(String senha) {
 		this.senha = senha;
+	}
+
+	public String getAtivo() {
+		return ativo;
+	}
+
+	public void setAtivo(String ativo) {
+		this.ativo = ativo;
+	}
+
+	public PessoaEntity getPessoaEntity() {
+		return pessoaEntity;
+	}
+
+	public void setPessoaEntity(PessoaEntity pessoaEntity) {
+		this.pessoaEntity = pessoaEntity;
 	}
 
 }

@@ -19,7 +19,7 @@ import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 
-import br.com.agendaexpress.exceptions.ExceptionDAO;
+import br.com.agendaexpress.exceptions.DAOException;
 
 
 
@@ -64,18 +64,18 @@ public abstract class GenericDAO<T, ID extends Serializable> implements GenericD
     }
 
     @Override
-    public Long countAll() throws ExceptionDAO {
+    public Long countAll() throws DAOException {
     	Long ret;
         try {
             ret = countByCriteria();
         } catch (Exception e) {
-            throw new ExceptionDAO(e);
+            throw new DAOException(e);
         }
         return ret;
     }
 
     @Override
-    public int countByExample(final T exampleInstance) throws ExceptionDAO {
+    public int countByExample(final T exampleInstance) throws DAOException {
         Criteria crit = null;
         try {
             Session session = (Session) em.getDelegate();
@@ -83,42 +83,42 @@ public abstract class GenericDAO<T, ID extends Serializable> implements GenericD
             crit.setProjection(Projections.rowCount());
             crit.add(Example.create(exampleInstance));
         } catch (Exception e) {
-            throw new ExceptionDAO(e);
+            throw new DAOException(e);
         }
         return (Integer) crit.list().get(0);
     }
 
     @Override
-    public List<T> findAll() throws ExceptionDAO {
+    public List<T> findAll() throws DAOException {
         List<T> ret = null;
         try {
             ret = findByCriteria();
         } catch (Exception e) {
-            throw new ExceptionDAO(e);
+            throw new DAOException(e);
         }
 
         return ret;
     }
     
-    public List<T> findAllOrdened( String orderColumn , boolean isDesc ) throws ExceptionDAO {
+    public List<T> findAllOrdened( String orderColumn , boolean isDesc ) throws DAOException {
         List<T> ret = null;
         try {
             ret = findByCriteriaOrdened( orderColumn, isDesc );
             
         } catch (Exception e) {
-            throw new ExceptionDAO(e);
+            throw new DAOException(e);
         }
         
         return ret;
     }
 
     @Override
-    public List<T> findAll(String propertyOrder, Boolean isDesc) throws ExceptionDAO {
+    public List<T> findAll(String propertyOrder, Boolean isDesc) throws DAOException {
         List<T> ret = null;
         try {
             ret = findByCriteria(propertyOrder, isDesc);
         } catch (Exception e) {
-            throw new ExceptionDAO(e);
+            throw new DAOException(e);
         }
 
         return ret;
@@ -126,7 +126,7 @@ public abstract class GenericDAO<T, ID extends Serializable> implements GenericD
 
     @SuppressWarnings("unchecked")
     @Override
-    public List<T> findByExample(final T exampleInstance) throws ExceptionDAO {
+    public List<T> findByExample(final T exampleInstance) throws DAOException {
         List<T> result = null;
         try {
             Session session = (Session) em.getDelegate();
@@ -134,25 +134,25 @@ public abstract class GenericDAO<T, ID extends Serializable> implements GenericD
             crit.add(Example.create(exampleInstance));
             result = crit.list();
         } catch (Exception e) {
-            throw new ExceptionDAO(e);
+            throw new DAOException(e);
         }
         return result;
     }
 
     @Override
-    public T findById(final ID id) throws ExceptionDAO {
+    public T findById(final ID id) throws DAOException {
         T result = null;
         try {
             result = em.find(persistentClass, id);
         } catch (Exception e) {
-            throw new ExceptionDAO(e);
+            throw new DAOException(e);
         }
         return result;
     }
 
     @SuppressWarnings("unchecked")
     @Override
-    public List<T> findByNamedQuery(final String name, Object... params) throws ExceptionDAO {
+    public List<T> findByNamedQuery(final String name, Object... params) throws DAOException {
         List<T> result = null;
 
         try {
@@ -163,7 +163,7 @@ public abstract class GenericDAO<T, ID extends Serializable> implements GenericD
             }
             result = (List<T>) query.getResultList();
         } catch (Exception e) {
-            throw new ExceptionDAO(e);
+            throw new DAOException(e);
         }
         return result;
     }
@@ -171,7 +171,7 @@ public abstract class GenericDAO<T, ID extends Serializable> implements GenericD
     @SuppressWarnings("unchecked")
     @Override
     public List<T> findByNamedQueryAndNamedParams(final String name, final Map<String, ? extends Object> params)
-            throws ExceptionDAO {
+            throws DAOException {
         List<T> result = null;
         try {
             javax.persistence.Query query = em.createNamedQuery(name);
@@ -181,7 +181,7 @@ public abstract class GenericDAO<T, ID extends Serializable> implements GenericD
             }
             result = (List<T>) query.getResultList();
         } catch (Exception e) {
-            throw new ExceptionDAO(e);
+            throw new DAOException(e);
         }
         return result;
     }
@@ -189,12 +189,12 @@ public abstract class GenericDAO<T, ID extends Serializable> implements GenericD
     /**
      * Use this inside subclasses as a convenience method.
      */
-    protected List<T> findByCriteria(final Criterion... criterion) throws ExceptionDAO {
+    protected List<T> findByCriteria(final Criterion... criterion) throws DAOException {
         List<T> ret = null;
         try {
             ret = findByCriteria(null, null, -1, -1, criterion);
         } catch (Exception e) {
-            throw new ExceptionDAO(e);
+            throw new DAOException(e);
         }
         return ret;
     }
@@ -202,12 +202,12 @@ public abstract class GenericDAO<T, ID extends Serializable> implements GenericD
     /**
      * Use this inside subclasses as a convenience method.
      */
-    protected List<T> findByCriteriaOrdened(String orderColumn , boolean isDesc, final Criterion... criterion) throws ExceptionDAO {
+    protected List<T> findByCriteriaOrdened(String orderColumn , boolean isDesc, final Criterion... criterion) throws DAOException {
         List<T> ret = null;
         try {
             ret = findByCriteria(orderColumn, isDesc, -1, -1, criterion);
         } catch (Exception e) {
-            throw new ExceptionDAO(e);
+            throw new DAOException(e);
         }
         return ret;
     }
@@ -215,12 +215,12 @@ public abstract class GenericDAO<T, ID extends Serializable> implements GenericD
     /**
      * Use this inside subclasses as a convenience method.
      */
-    protected List<T> findByCriteria(String propertyOrder, Boolean isDesc, final Criterion... criterion) throws ExceptionDAO {
+    protected List<T> findByCriteria(String propertyOrder, Boolean isDesc, final Criterion... criterion) throws DAOException {
         List<T> ret = null;
         try {
             ret = findByCriteria(propertyOrder, isDesc, -1, -1, criterion);
         } catch (Exception e) {
-            throw new ExceptionDAO(e);
+            throw new DAOException(e);
         }
         return ret;
     }
@@ -230,7 +230,7 @@ public abstract class GenericDAO<T, ID extends Serializable> implements GenericD
      */
     @SuppressWarnings("unchecked")
     protected List<T> findByCriteria(String propertyOrder, Boolean isDesc, final int firstResult, final int maxResults,
-            final Criterion... criterion) throws ExceptionDAO {
+            final Criterion... criterion) throws DAOException {
         List<T> result = null;
 
         try {
@@ -259,12 +259,12 @@ public abstract class GenericDAO<T, ID extends Serializable> implements GenericD
 
             result = crit.list();
         } catch (Exception e) {
-            throw new ExceptionDAO(e);
+            throw new DAOException(e);
         }
         return result;
     }
 
-    protected Long countByCriteria(Criterion... criterion) throws ExceptionDAO {
+    protected Long countByCriteria(Criterion... criterion) throws DAOException {
 
         Long ret = null;
         try {
@@ -277,54 +277,54 @@ public abstract class GenericDAO<T, ID extends Serializable> implements GenericD
             }
             ret = (Long) crit.list().get(0);
         } catch (Exception e) {
-            throw new ExceptionDAO(e);
+            throw new DAOException(e);
         }
         return ret;
     }
 
     @Override
-    public void delete(T entity) throws ExceptionDAO {
+    public void delete(T entity) throws DAOException {
         try {
             em.remove(entity);
         } catch (Exception e) {
-            throw new ExceptionDAO(e);
+            throw new DAOException(e);
         }
     }
     
     @Override
-    public void delete(List<T> entities) throws ExceptionDAO {
+    public void delete(List<T> entities) throws DAOException {
         try {
         	for(T t : entities){
         		em.remove(t);
         	}
         } catch (Exception e) {
-            throw new ExceptionDAO(e);
+            throw new DAOException(e);
         }
     }
 
     @Override
-    public T save(T entity) throws ExceptionDAO {
+    public T save(T entity) throws DAOException {
         try {
             em.persist(entity);
         } catch (Exception e) {
-            throw new ExceptionDAO(e);
+            throw new DAOException(e);
         }
         return entity;
     }
 
     @Override
-    public T update(T entity) throws ExceptionDAO {
+    public T update(T entity) throws DAOException {
         try {
             em.merge(entity);
         } catch (Exception e) {
         	System.out.println("GenericDAO.update(): " + e);
-            throw new ExceptionDAO(e);
+            throw new DAOException(e);
         }
         return entity;
     }
 
     @SuppressWarnings("unchecked")
-    public List<T> findByCriteriaName(String criteriaName, long indivUniqId) throws ExceptionDAO {
+    public List<T> findByCriteriaName(String criteriaName, long indivUniqId) throws DAOException {
 
         Session session = (Session) em.getDelegate();
         List<T> entityList = session.createCriteria(getEntityClass()).add(Restrictions.eq(criteriaName, indivUniqId)).list();
@@ -333,7 +333,7 @@ public abstract class GenericDAO<T, ID extends Serializable> implements GenericD
     }
     
     @SuppressWarnings("unchecked")
-    public List<T> findByCriteriaNameList(ArrayList<String> criteriaName, ArrayList<Object> values) throws ExceptionDAO {
+    public List<T> findByCriteriaNameList(ArrayList<String> criteriaName, ArrayList<Object> values) throws DAOException {
         
         List<T> entityList = null;
         
@@ -353,7 +353,7 @@ public abstract class GenericDAO<T, ID extends Serializable> implements GenericD
     }
     
     @SuppressWarnings("unchecked")
-    public List<T> findByIdParameter(long id, String collum) throws ExceptionDAO {
+    public List<T> findByIdParameter(long id, String collum) throws DAOException {
 
         Session session = (Session) em.getDelegate();
         List<T> entityList = session.createCriteria(getEntityClass()).add(Restrictions.eq("id." + collum, id)).list();
@@ -361,7 +361,7 @@ public abstract class GenericDAO<T, ID extends Serializable> implements GenericD
         return entityList;
     }
 
-    public void deleteByCriteriaName(String criteriaName, long indivUniqId) throws ExceptionDAO {
+    public void deleteByCriteriaName(String criteriaName, long indivUniqId) throws DAOException {
         List<T> entityList = findByCriteriaName(criteriaName, indivUniqId);
         if (entityList != null) {
             for (T entity : entityList) {
@@ -370,7 +370,7 @@ public abstract class GenericDAO<T, ID extends Serializable> implements GenericD
         }
     }
 
-    public void deleteById(final ID id) throws ExceptionDAO {
+    public void deleteById(final ID id) throws DAOException {
         T entity = findById(id);
         if (entity != null) {
             em.remove(entity);
@@ -387,7 +387,7 @@ public abstract class GenericDAO<T, ID extends Serializable> implements GenericD
     }
 	
 	
-    public void deleteByIndivUniqIdCriteria(long indivUniqId) throws ExceptionDAO {
+    public void deleteByIndivUniqIdCriteria(long indivUniqId) throws DAOException {
         List<T> entityList = findByIndivUniqIdCriteria(indivUniqId);
         if (entityList != null) {
             for (T entity : entityList) {
@@ -397,7 +397,7 @@ public abstract class GenericDAO<T, ID extends Serializable> implements GenericD
     }
     
     @SuppressWarnings("unchecked")
-    public List<T> findByIndivUniqIdCriteria(long indivUniqId) throws ExceptionDAO {
+    public List<T> findByIndivUniqIdCriteria(long indivUniqId) throws DAOException {
 
         Session session = (Session) em.getDelegate();
         List<T> entityList = session.createCriteria(getEntityClass()).add(Restrictions.eq("id.indivUniqId", indivUniqId)).list();

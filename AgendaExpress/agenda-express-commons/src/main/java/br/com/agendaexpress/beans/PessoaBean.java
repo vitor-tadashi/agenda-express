@@ -8,6 +8,10 @@ public class PessoaBean {
 
 	private UsuarioBean usuarioBean;
 
+	private PessoaFisicaBean pessoaFisica;
+
+	private PessoaJuridicaBean pessoaJuridica;
+
 	public Integer getIdPessoa() {
 		return idPessoa;
 	}
@@ -30,6 +34,22 @@ public class PessoaBean {
 
 	public void setUsuarioBean(UsuarioBean usuarioBean) {
 		this.usuarioBean = usuarioBean;
+	}
+
+	public PessoaFisicaBean getPessoaFisica() {
+		return pessoaFisica;
+	}
+
+	public void setPessoaFisica(PessoaFisicaBean pessoaFisica) {
+		this.pessoaFisica = pessoaFisica;
+	}
+
+	public PessoaJuridicaBean getPessoaJuridica() {
+		return pessoaJuridica;
+	}
+
+	public void setPessoaJuridica(PessoaJuridicaBean pessoaJuridica) {
+		this.pessoaJuridica = pessoaJuridica;
 	}
 
 	/*

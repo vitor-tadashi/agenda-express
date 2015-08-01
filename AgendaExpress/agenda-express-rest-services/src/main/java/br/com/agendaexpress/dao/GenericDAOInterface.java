@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
 
-import br.com.agendaexpress.exceptions.ExceptionDAO;
+import br.com.agendaexpress.exceptions.DAOException;
 
 /**
  * Generic Repository, providing basic CRUD operations
@@ -28,14 +28,14 @@ public interface GenericDAOInterface<T, ID extends Serializable> {
      * @param id the primary key
      * @return the entity
      */
-    T findById(final ID id) throws ExceptionDAO;
+    T findById(final ID id) throws DAOException;
 
     /**
      * Load all entities.
      *
      * @return the list of entities
      */
-    List<T> findAll() throws ExceptionDAO;
+    List<T> findAll() throws DAOException;
     
 
     /**
@@ -43,7 +43,7 @@ public interface GenericDAOInterface<T, ID extends Serializable> {
      *
      * @return the list of entities
      */
-    List<T> findAll(String propertyOrder, Boolean isDesc) throws ExceptionDAO;
+    List<T> findAll(String propertyOrder, Boolean isDesc) throws DAOException;
 
 
     /**
@@ -52,7 +52,7 @@ public interface GenericDAOInterface<T, ID extends Serializable> {
      * @param exampleInstance the example
      * @return the list of entities
      */
-    List<T> findByExample(final T exampleInstance) throws ExceptionDAO;
+    List<T> findByExample(final T exampleInstance) throws DAOException;
 
     /**
      * Find using a named query.
@@ -65,7 +65,7 @@ public interface GenericDAOInterface<T, ID extends Serializable> {
     List<T> findByNamedQuery(
         final String queryName,
         Object... params
-    ) throws ExceptionDAO;
+    ) throws DAOException;
 
     /**
      * Find using a named query.
@@ -78,14 +78,14 @@ public interface GenericDAOInterface<T, ID extends Serializable> {
     List<T> findByNamedQueryAndNamedParams(
         final String queryName,
         final Map<String, ?extends Object> params
-    ) throws ExceptionDAO;
+    ) throws DAOException;
 
     /**
      * Count all entities.
      *
      * @return the number of entities
      */
-    Long countAll() throws ExceptionDAO;
+    Long countAll() throws DAOException;
 
     /**
      * Count entities based on an example.
@@ -93,7 +93,7 @@ public interface GenericDAOInterface<T, ID extends Serializable> {
      * @param exampleInstance the search criteria
      * @return the number of entities
      */
-    int countByExample(final T exampleInstance) throws ExceptionDAO;
+    int countByExample(final T exampleInstance) throws DAOException;
 
     
     /**
@@ -103,29 +103,29 @@ public interface GenericDAOInterface<T, ID extends Serializable> {
      * 
      * @return the saved entity
      */
-    T save(final T entity) throws ExceptionDAO;
+    T save(final T entity) throws DAOException;
 
     /**
      * delete an entity from the database.
      * 
      * @param entity the entity to delete
      */
-    void delete(final T entity) throws ExceptionDAO;
+    void delete(final T entity) throws DAOException;
     
     /**
      * delete an entity list from the database.
      * 
      * @param entity the entity to delete
      */
-	void delete(List<T> entities) throws ExceptionDAO;
+	void delete(List<T> entities) throws DAOException;
     
     /**
      * Update only
      * 
      * @param entity
      * @return
-     * @throws ExceptionDAO
+     * @throws DAOException
      */
-    public T update(T entity) throws ExceptionDAO;
+    public T update(T entity) throws DAOException;
 
 }

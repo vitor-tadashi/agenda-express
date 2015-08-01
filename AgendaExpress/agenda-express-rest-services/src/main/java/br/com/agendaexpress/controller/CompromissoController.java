@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import br.com.agendaexpress.Exception.RestException;
 import br.com.agendaexpress.beans.TipoCompromissoBean;
-import br.com.agendaexpress.exceptions.ExceptionDAO;
+import br.com.agendaexpress.exceptions.DAOException;
 import br.com.agendaexpress.service.CompromissoService;
 
 @Controller
@@ -27,7 +27,7 @@ public class CompromissoController {
 	public @ResponseBody void addCompromisso(ModelMap modelMap, HttpServletResponse resp, HttpServletRequest request, @RequestBody(required = true) TipoCompromissoBean tipoCompromissoBean) throws RestException{
 		try {
 			compromissoService.addCompromisso(tipoCompromissoBean);
-		} catch (ExceptionDAO e) {
+		} catch (DAOException e) {
 			throw new RestException(e.getMessage(), e.getCause());
 		}
 	}
@@ -36,7 +36,7 @@ public class CompromissoController {
 	public @ResponseBody void deleteCompromisso(ModelMap modelMap, HttpServletResponse resp, HttpServletRequest request, @RequestBody(required = true) Integer id) throws RestException{
 		try {
 			compromissoService.deleteCompromisso(id);
-		} catch (ExceptionDAO e) {
+		} catch (DAOException e) {
 			throw new RestException(e.getMessage(), e.getCause());
 		}
 	}
@@ -45,7 +45,7 @@ public class CompromissoController {
 	public @ResponseBody void updateCompromisso(ModelMap modelMap, HttpServletResponse resp, HttpServletRequest request, @RequestBody(required = true) TipoCompromissoBean tipoCompromissoBean) throws RestException{
 		try {
 			compromissoService.updateCompromisso(tipoCompromissoBean);
-		} catch (ExceptionDAO e) {
+		} catch (DAOException e) {
 			throw new RestException(e.getMessage(), e.getCause());
 		}
 	}
