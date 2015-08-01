@@ -11,7 +11,7 @@ public class UsuarioBean {
 
 	private String senha;
 
-	private PessoaBean pessoaBean;
+	private PessoaBean pessoa;
 
 	public UsuarioBean() {
 
@@ -67,12 +67,12 @@ public class UsuarioBean {
 		this.senha = senha;
 	}
 
-	public PessoaBean getPessoaBean() {
-		return pessoaBean;
+	public PessoaBean getPessoa() {
+		return pessoa;
 	}
 
-	public void setPessoaBean(PessoaBean pessoaBean) {
-		this.pessoaBean = pessoaBean;
+	public void setPessoa(PessoaBean pessoa) {
+		this.pessoa = pessoa;
 	}
 
 }

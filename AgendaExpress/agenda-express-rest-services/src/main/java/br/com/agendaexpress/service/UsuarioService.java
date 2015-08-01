@@ -11,8 +11,14 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import br.com.agendaexpress.beans.UsuarioBean;
+import br.com.agendaexpress.dao.PessoaDAO;
+import br.com.agendaexpress.dao.PessoaFisicaDAO;
+import br.com.agendaexpress.dao.PessoaJuridicaDAO;
 import br.com.agendaexpress.dao.SeguidorDAO;
 import br.com.agendaexpress.dao.UsuarioDAO;
+import br.com.agendaexpress.entity.PessoaEntity;
+import br.com.agendaexpress.entity.PessoaFisicaEntity;
+import br.com.agendaexpress.entity.PessoaJuridicaEntity;
 import br.com.agendaexpress.entity.SeguidorEntity;
 import br.com.agendaexpress.entity.SeguidorEntityPK;
 import br.com.agendaexpress.entity.UsuarioEntity;
@@ -30,21 +36,45 @@ public class UsuarioService {
 	@Autowired
 	private SeguidorDAO seguidorDAO;
 
+	@Autowired
+	private PessoaDAO pessoaDAO;
+	
+	@Autowired
+	private PessoaJuridicaDAO pessoaJuridicaDAO;
+	
+	@Autowired
+	private PessoaFisicaDAO pessoaFisicaDAO;
+
 	private MapperFacade mapper = new DefaultMapperFactory.Builder()
 			.mapNulls(false).build().getMapperFacade();
 
 	public UsuarioService() {
-	}
+	} 
 
 	public void addUsuario(UsuarioBean usuarioBean) throws DAOException,
 			BusinessException {
 		UsuarioEntity usuarioEntity = mapper.map(usuarioBean,
 				UsuarioEntity.class);
-		if (usuarioEntity == null) {
-			throw new BusinessException("Problema ao cadastrar usuario");
+		System.out.println();
+		PessoaEntity pessoaSalva = pessoaDAO.save(usuarioEntity.getPessoa());
+		
+		if(usuarioBean.getPessoa() != null && usuarioBean.getPessoa().getPessoaFisica() != null){
+			PessoaFisicaEntity pessoaFisicaEntity = mapper.map(usuarioBean.getPessoa().getPessoaFisica(),
+					PessoaFisicaEntity.class);
+			pessoaFisicaEntity.setIdPessoa(pessoaSalva.getIdPessoa());
+			pessoaFisicaDAO.save(pessoaFisicaEntity);
 		}
+		
+		if(usuarioBean.getPessoa() != null && usuarioBean.getPessoa().getPessoaJuridica() != null){
+			PessoaJuridicaEntity pessoaJuridicaEntity = mapper.map(usuarioBean.getPessoa().getPessoaJuridica(),
+					PessoaJuridicaEntity.class);
+			pessoaJuridicaEntity.setIdPessoa(pessoaSalva.getIdPessoa());
+			pessoaJuridicaDAO.save(pessoaJuridicaEntity);
+		}	
+		usuarioEntity.setPessoa(pessoaSalva);
 		usuarioEntity.setAtivo(AtivoInativoEnum.ATIVO.getValue());
 		usuarioDAO.save(usuarioEntity);
+		System.out.println();
 	}
 
 	public void delUsuario(Integer id) throws DAOException {
@@ -96,9 +126,10 @@ public class UsuarioService {
 			throw new BusinessException("idUsuario null");
 		}
 		if (idUsuario == idUsuarioSeguidor) {
-			throw new BusinessException("idUsuarioSeguidor deve ser diferente do idUsuario");
+			throw new BusinessException(
+					"idUsuarioSeguidor deve ser diferente do idUsuario");
 		}
-		
+
 		UsuarioEntity usuario = usuarioDAO.findById(idUsuario);
 		if (usuario == null) {
 			throw new BusinessException("idUsuario não existe");
@@ -110,14 +141,14 @@ public class UsuarioService {
 		}
 
 		SeguidorEntity exists = seguidorDAO.findById(new SeguidorEntityPK(
-				usuario.getPessoaEntity().getIdPessoa(), usuarioSeguidor
-						.getPessoaEntity().getIdPessoa()));
+				usuario.getPessoa().getIdPessoa(), usuarioSeguidor.getPessoa()
+						.getIdPessoa()));
 		if (exists != null) {
 			throw new BusinessException("Usuário já está sendo seguindo.");
 		}
 		SeguidorEntity seguidor = new SeguidorEntity();
-		seguidor.setId(new SeguidorEntityPK(usuario.getPessoaEntity()
-				.getIdPessoa(), usuarioSeguidor.getPessoaEntity().getIdPessoa()));
+		seguidor.setId(new SeguidorEntityPK(usuario.getPessoa().getIdPessoa(),
+				usuarioSeguidor.getPessoa().getIdPessoa()));
 		seguidorDAO.save(seguidor);
 	}
 
