@@ -10,6 +10,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import br.com.agendaexpress.Exception.RestException;
+import br.com.agendaexpress.beans.BusinessExceptionBean;
 import br.com.agendaexpress.beans.SeguirBean;
 import br.com.agendaexpress.beans.UsuarioBean;
 import br.com.agendaexpress.commons.util.SpringContextHolder;
@@ -33,8 +34,8 @@ public class UsuarioController {
 			return Response.status(500)
 					.entity(new RestException(e.getMessage())).build();
 		} catch (BusinessException e) {
-			return Response.status(500)
-					.entity(new RestException(e.getMessage())).build();
+			return Response.status(200)
+					.entity(new BusinessExceptionBean(e.getMessage())).build();
 		}
 		return Response.status(200).entity("success").build();
 	}
@@ -105,8 +106,8 @@ public class UsuarioController {
 			return Response.status(500)
 					.entity(new RestException(e.getMessage())).build();
 		} catch (BusinessException e) {
-			return Response.status(500)
-					.entity(new RestException(e.getMessage())).build();
+			return Response.status(200)
+					.entity(new BusinessExceptionBean(e.getMessage())).build();
 		}
 		return Response.status(200).entity(usuario).build();
 	}

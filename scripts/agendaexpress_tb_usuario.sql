@@ -28,8 +28,12 @@ CREATE TABLE `tb_usuario` (
   `EMAIL` varchar(200) DEFAULT NULL,
   `SENHA` varchar(200) NOT NULL,
   `IMAGEM_USUARIO` blob,
-  PRIMARY KEY (`ID_USUARIO`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `ID_PESSOA` int(11) DEFAULT NULL,
+  `ATIVO` char(1) DEFAULT 'S',
+  PRIMARY KEY (`ID_USUARIO`),
+  KEY `USUARIO_PESSOA_FK_idx` (`ID_PESSOA`),
+  CONSTRAINT `USUARIO_PESSOA_FK` FOREIGN KEY (`ID_PESSOA`) REFERENCES `tb_pessoa` (`ID_PESSOA`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -38,6 +42,7 @@ CREATE TABLE `tb_usuario` (
 
 LOCK TABLES `tb_usuario` WRITE;
 /*!40000 ALTER TABLE `tb_usuario` DISABLE KEYS */;
+INSERT INTO `tb_usuario` VALUES (2,'updated','asdfasdf','pass',NULL,NULL,'S'),(3,'genkalogin2','xande.genka@gmail.com','senha',NULL,NULL,'S'),(4,'difosal','xande.genka@gmail.com','senha',NULL,NULL,NULL);
 /*!40000 ALTER TABLE `tb_usuario` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -50,4 +55,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-07-20 22:22:04
+-- Dump completed on 2015-08-01 15:36:16
