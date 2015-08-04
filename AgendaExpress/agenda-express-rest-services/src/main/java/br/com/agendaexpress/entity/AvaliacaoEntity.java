@@ -21,6 +21,9 @@ public class AvaliacaoEntity implements Serializable {
 
 	@Column(name="QTD_ESTRELAS")
 	private Integer qtdEstrelas;
+	
+	@Column(name="DESCRICAO")
+	private String descricao;
 
 	//bi-directional many-to-one association to PessoaEntity
 	@ManyToOne
@@ -54,4 +57,11 @@ public class AvaliacaoEntity implements Serializable {
 		this.tbPessoa = tbPessoa;
 	}
 
+	public String getDescricao() {
+		return descricao;
+	}
+
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
+	}
 }
