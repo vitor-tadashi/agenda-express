@@ -70,7 +70,9 @@ public class UsuarioService {
 					PessoaJuridicaEntity.class);
 			pessoaJuridicaEntity.setIdPessoa(pessoaSalva.getIdPessoa());
 			pessoaJuridicaDAO.save(pessoaJuridicaEntity);
-		}	
+		}
+		
+		//TODO CHAMAR METODO DE CRIA√á√ÉO DE AGENDA
 		usuarioEntity.setPessoa(pessoaSalva);
 		usuarioEntity.setAtivo(AtivoInativoEnum.ATIVO.getValue());
 		usuarioDAO.save(usuarioEntity);
@@ -132,19 +134,19 @@ public class UsuarioService {
 
 		UsuarioEntity usuario = usuarioDAO.findById(idUsuario);
 		if (usuario == null) {
-			throw new BusinessException("idUsuario n„o existe");
+			throw new BusinessException("idUsuario n√£o existe");
 		}
 
 		UsuarioEntity usuarioSeguidor = usuarioDAO.findById(idUsuarioSeguidor);
 		if (usuarioSeguidor == null) {
-			throw new BusinessException("idUsuarioSeguidor n„o existe");
+			throw new BusinessException("idUsuarioSeguidor n√£o existe");
 		}
 
 		SeguidorEntity exists = seguidorDAO.findById(new SeguidorEntityPK(
 				usuario.getPessoa().getIdPessoa(), usuarioSeguidor.getPessoa()
 						.getIdPessoa()));
 		if (exists != null) {
-			throw new BusinessException("Usu·rio j· est· sendo seguindo.");
+			throw new BusinessException("Usu√°rio j√° est√° sendo seguindo.");
 		}
 		SeguidorEntity seguidor = new SeguidorEntity();
 		seguidor.setId(new SeguidorEntityPK(usuario.getPessoa().getIdPessoa(),

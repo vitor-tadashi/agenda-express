@@ -4,9 +4,11 @@ import java.util.List;
 
 import javax.persistence.TypedQuery;
 
+import org.springframework.stereotype.Repository;
+
 import br.com.agendaexpress.commons.util.FilterQueryUtil;
 import br.com.agendaexpress.entity.AvaliacaoEntity;
-
+@Repository
 public class AvaliacaoDAO extends GenericDAO<AvaliacaoEntity, Integer>{
 	
 	public List<AvaliacaoEntity> findAvaliacao(AvaliacaoEntity avaliacaoEntity) {

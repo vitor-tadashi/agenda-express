@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE Configure PUBLIC "-//Jetty//Configure//EN" "http://www.eclipse.org/jetty/configure.dtd">
+
+<Configure id="Server" class="org.eclipse.jetty.webapp.WebAppContext">
+	<New class="org.eclipse.jetty.plus.jndi.EnvEntry">
+		<Arg>ENVIRONMENT</Arg>
+		<Arg type="java.lang.String">DEV</Arg>
+	</New>
+
+	<New class="org.eclipse.jetty.plus.jndi.EnvEntry">
+		<Arg>SERVER</Arg>
+		<Arg type="java.lang.String">JETTY</Arg>
+	</New>
+
+	<New id="DSAgenda" class="org.eclipse.jetty.plus.jndi.Resource">
+		<Arg></Arg>
+		<Arg>jndi/DS_agenda_express</Arg>
+		<Arg>
+			<New class="com.mysql.jdbc.jdbc2.optional.MysqlConnectionPoolDataSource">
+				<Set name="Url">jdbc:mysql://localhost:3306/agendaexpress</Set>
+				<Set name="User">root</Set>
+				<Set name="Password">1234</Set>
+			</New>
+		</Arg>
+	</New>
+
+	<Call name="setAttribute">
+		<Arg>org.eclipse.jetty.server.Request.maxFormContentSize</Arg>
+		<Arg>
+			<Property name="jetty.maxFormContentSize" default="1000000" />
+		</Arg>
+	</Call>
+</Configure>

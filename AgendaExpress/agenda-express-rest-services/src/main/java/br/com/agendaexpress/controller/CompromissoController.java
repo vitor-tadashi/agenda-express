@@ -19,30 +19,42 @@ import br.com.agendaexpress.service.CompromissoService;
 @Controller
 @RequestMapping(name = "/compromisso")
 public class CompromissoController {
-	
+
 	@Autowired
 	CompromissoService compromissoService;
-	
+
 	@RequestMapping(value = "/add", method = RequestMethod.POST, headers = "Content-Type=application/json", consumes = "application/json", produces = "application/json")
-	public @ResponseBody void addCompromisso(ModelMap modelMap, HttpServletResponse resp, HttpServletRequest request, @RequestBody(required = true) TipoCompromissoBean tipoCompromissoBean) throws RestException{
+	public @ResponseBody void addCompromisso(
+			ModelMap modelMap,
+			HttpServletResponse resp,
+			HttpServletRequest request,
+			@RequestBody(required = true) TipoCompromissoBean tipoCompromissoBean)
+			throws RestException {
 		try {
 			compromissoService.addCompromisso(tipoCompromissoBean);
 		} catch (DAOException e) {
 			throw new RestException(e.getMessage(), e.getCause());
 		}
 	}
-	
+
 	@RequestMapping(value = "/delete", method = RequestMethod.POST, headers = "Content-Type=application/json", consumes = "application/json", produces = "application/json")
-	public @ResponseBody void deleteCompromisso(ModelMap modelMap, HttpServletResponse resp, HttpServletRequest request, @RequestBody(required = true) Integer id) throws RestException{
+	public @ResponseBody void deleteCompromisso(ModelMap modelMap,
+			HttpServletResponse resp, HttpServletRequest request,
+			@RequestBody(required = true) Integer id) throws RestException {
 		try {
 			compromissoService.deleteCompromisso(id);
 		} catch (DAOException e) {
 			throw new RestException(e.getMessage(), e.getCause());
 		}
 	}
-	
+
 	@RequestMapping(value = "/update", method = RequestMethod.POST, headers = "Content-Type=application/json", consumes = "application/json", produces = "application/json")
-	public @ResponseBody void updateCompromisso(ModelMap modelMap, HttpServletResponse resp, HttpServletRequest request, @RequestBody(required = true) TipoCompromissoBean tipoCompromissoBean) throws RestException{
+	public @ResponseBody void updateCompromisso(
+			ModelMap modelMap,
+			HttpServletResponse resp,
+			HttpServletRequest request,
+			@RequestBody(required = true) TipoCompromissoBean tipoCompromissoBean)
+			throws RestException {
 		try {
 			compromissoService.updateCompromisso(tipoCompromissoBean);
 		} catch (DAOException e) {

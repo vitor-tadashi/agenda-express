@@ -10,10 +10,8 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import br.com.agendaexpress.Exception.RestException;
@@ -31,7 +29,7 @@ public class AvaliacaoController {
 	@Path("/add")
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
-	public @ResponseBody void addAvaliacao(ModelMap modelMap, HttpServletResponse resp, HttpServletRequest request, @RequestBody(required = true) AvaliacaoBean avaliacaoBean) throws RestException{
+	public void addAvaliacao(ModelMap modelMap, HttpServletResponse resp, HttpServletRequest request, AvaliacaoBean avaliacaoBean) throws RestException{
 		try {
 			avaliacaoService.addAvaliacao(avaliacaoBean);
 		} catch (DAOException e) {
@@ -43,7 +41,7 @@ public class AvaliacaoController {
 	@Path("/update")
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
-	public @ResponseBody void updateAvaliacao(ModelMap modelMap, HttpServletResponse resp, HttpServletRequest request, @RequestBody(required = true) AvaliacaoBean avaliacaoBean) throws RestException{
+	public void updateAvaliacao(ModelMap modelMap, HttpServletResponse resp, HttpServletRequest request, AvaliacaoBean avaliacaoBean) throws RestException{
 		try {
 			avaliacaoService.updateAvaliacao(avaliacaoBean);
 		} catch (DAOException e) {
@@ -55,7 +53,7 @@ public class AvaliacaoController {
 	@Path("/delete")
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
-	public @ResponseBody void deleteAvaliacao(ModelMap modelMap, HttpServletResponse resp, HttpServletRequest request, @RequestBody(required = true) Integer id) throws RestException{
+	public void deleteAvaliacao(ModelMap modelMap, HttpServletResponse resp, HttpServletRequest request, Integer id) throws RestException{
 		try {
 			avaliacaoService.deleteAvaliacao(id);
 		} catch (DAOException e) {
@@ -67,7 +65,7 @@ public class AvaliacaoController {
 	@Path("/get")
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
-	public @ResponseBody void getAvaliacao(ModelMap modelMap, HttpServletResponse resp, HttpServletRequest request, @RequestBody(required = true) AvaliacaoBean avaliacaoBean) throws RestException{
+	public void getAvaliacao(ModelMap modelMap, HttpServletResponse resp, HttpServletRequest request, AvaliacaoBean avaliacaoBean) throws RestException{
 		try {
 			avaliacaoService.findAvaliacao(avaliacaoBean);
 		} catch (DAOException e) {
