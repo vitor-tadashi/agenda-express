@@ -1,7 +1,9 @@
 package br.com.agendaexpress.entity;
 
 import java.io.Serializable;
+
 import javax.persistence.*;
+
 import java.util.List;
 
 /**
@@ -22,46 +24,17 @@ public class PessoaEntity implements Serializable {
 	@Column(name = "ID_ENDERECO")
 	private String idEndereco;
 
-	@OneToOne(mappedBy = "pessoaEntity")
-	private UsuarioEntity usuarioEntity;
+	@OneToOne(mappedBy = "pessoa")
+	private UsuarioEntity usuario;
 
-	// bi-directional many-to-one association to AgendaEntity
 	@OneToMany(mappedBy = "tbPessoa")
-	private List<AgendaEntity> tbAgendas;
-
-	// bi-directional many-to-one association to AvaliacaoEntity
-	@OneToMany(mappedBy = "tbPessoa")
-	private List<AvaliacaoEntity> tbAvaliacaos;
-
-	// bi-directional one-to-one association to PessoaFisicaEntity
-	@OneToOne(mappedBy = "tbPessoa")
-	private PessoaFisicaEntity tbPessoaFisica;
-
-	// bi-directional one-to-one association to PessoaJuridicaEntity
-	@OneToOne(mappedBy = "tbPessoa")
-	private PessoaJuridicaEntity tbPessoaJuridica;
-
-	// bi-directional many-to-many association to PessoaJuridicaEntity
-	@ManyToMany(mappedBy = "tbPessoas")
-	private List<PessoaJuridicaEntity> tbPessoaJuridicas;
-
-	// bi-directional many-to-one association to RecomendacaoEntity
-	@OneToMany(mappedBy = "tbPessoa")
-	private List<RecomendacaoEntity> tbRecomendacaos;
+	private List<AvaliacaoEntity> avaliacaos;
 
 	public PessoaEntity() {
 	}
 
-	public UsuarioEntity getUsuarioEntity() {
-		return usuarioEntity;
-	}
-
-	public void setUsuarioEntity(UsuarioEntity usuarioEntity) {
-		this.usuarioEntity = usuarioEntity;
-	}
-
 	public Integer getIdPessoa() {
-		return this.idPessoa;
+		return idPessoa;
 	}
 
 	public void setIdPessoa(Integer idPessoa) {
@@ -69,105 +42,27 @@ public class PessoaEntity implements Serializable {
 	}
 
 	public String getIdEndereco() {
-		return this.idEndereco;
+		return idEndereco;
 	}
 
 	public void setIdEndereco(String idEndereco) {
 		this.idEndereco = idEndereco;
 	}
 
-	public List<AgendaEntity> getTbAgendas() {
-		return this.tbAgendas;
+	public UsuarioEntity getUsuario() {
+		return usuario;
 	}
 
-	public void setTbAgendas(List<AgendaEntity> tbAgendas) {
-		this.tbAgendas = tbAgendas;
+	public void setUsuario(UsuarioEntity usuario) {
+		this.usuario = usuario;
 	}
 
-	public AgendaEntity addTbAgenda(AgendaEntity tbAgenda) {
-		getTbAgendas().add(tbAgenda);
-		tbAgenda.setTbPessoa(this);
-
-		return tbAgenda;
+	public List<AvaliacaoEntity> getAvaliacaos() {
+		return avaliacaos;
 	}
 
-	public AgendaEntity removeTbAgenda(AgendaEntity tbAgenda) {
-		getTbAgendas().remove(tbAgenda);
-		tbAgenda.setTbPessoa(null);
-
-		return tbAgenda;
+	public void setAvaliacaos(List<AvaliacaoEntity> avaliacaos) {
+		this.avaliacaos = avaliacaos;
 	}
-
-	public List<AvaliacaoEntity> getTbAvaliacaos() {
-		return this.tbAvaliacaos;
-	}
-
-	public void setTbAvaliacaos(List<AvaliacaoEntity> tbAvaliacaos) {
-		this.tbAvaliacaos = tbAvaliacaos;
-	}
-
-	public AvaliacaoEntity addTbAvaliacao(AvaliacaoEntity tbAvaliacao) {
-		getTbAvaliacaos().add(tbAvaliacao);
-		tbAvaliacao.setTbPessoa(this);
-
-		return tbAvaliacao;
-	}
-
-	public AvaliacaoEntity removeTbAvaliacao(AvaliacaoEntity tbAvaliacao) {
-		getTbAvaliacaos().remove(tbAvaliacao);
-		tbAvaliacao.setTbPessoa(null);
-
-		return tbAvaliacao;
-	}
-
-	public PessoaFisicaEntity getTbPessoaFisica() {
-		return this.tbPessoaFisica;
-	}
-
-	public void setTbPessoaFisica(PessoaFisicaEntity tbPessoaFisica) {
-		this.tbPessoaFisica = tbPessoaFisica;
-	}
-
-	public PessoaJuridicaEntity getTbPessoaJuridica() {
-		return this.tbPessoaJuridica;
-	}
-
-	public void setTbPessoaJuridica(PessoaJuridicaEntity tbPessoaJuridica) {
-		this.tbPessoaJuridica = tbPessoaJuridica;
-	}
-
-	public List<PessoaJuridicaEntity> getTbPessoaJuridicas() {
-		return this.tbPessoaJuridicas;
-	}
-
-	public void setTbPessoaJuridicas(
-			List<PessoaJuridicaEntity> tbPessoaJuridicas) {
-		this.tbPessoaJuridicas = tbPessoaJuridicas;
-	}
-
-	public List<RecomendacaoEntity> getTbRecomendacaos() {
-		return this.tbRecomendacaos;
-	}
-
-	public void setTbRecomendacaos(List<RecomendacaoEntity> tbRecomendacaos) {
-		this.tbRecomendacaos = tbRecomendacaos;
-	}
-
-	public RecomendacaoEntity addTbRecomendacao(
-			RecomendacaoEntity tbRecomendacao) {
-		getTbRecomendacaos().add(tbRecomendacao);
-		tbRecomendacao.setTbPessoa(this);
-
-		return tbRecomendacao;
-	}
-
-	public RecomendacaoEntity removeTbRecomendacao(
-			RecomendacaoEntity tbRecomendacao) {
-		getTbRecomendacaos().remove(tbRecomendacao);
-		tbRecomendacao.setTbPessoa(null);
-
-		return tbRecomendacao;
-	}
-
 
 }

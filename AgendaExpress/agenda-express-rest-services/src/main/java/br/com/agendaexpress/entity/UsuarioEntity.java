@@ -2,6 +2,7 @@ package br.com.agendaexpress.entity;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -41,15 +42,15 @@ public class UsuarioEntity implements Serializable {
 	@Column(name = "ATIVO")
 	private String ativo;
 
-	@OneToOne
+	@OneToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name = "ID_PESSOA")
-	private PessoaEntity pessoaEntity;
+	private PessoaEntity pessoa;
 
 	public UsuarioEntity() {
 	}
 
 	public Integer getIdUsuario() {
-		return this.idUsuario;
+		return idUsuario;
 	}
 
 	public void setIdUsuario(Integer idUsuario) {
@@ -57,7 +58,7 @@ public class UsuarioEntity implements Serializable {
 	}
 
 	public String getEmail() {
-		return this.email;
+		return email;
 	}
 
 	public void setEmail(String email) {
@@ -73,7 +74,7 @@ public class UsuarioEntity implements Serializable {
 	}
 
 	public String getLogin() {
-		return this.login;
+		return login;
 	}
 
 	public void setLogin(String login) {
@@ -81,7 +82,7 @@ public class UsuarioEntity implements Serializable {
 	}
 
 	public String getSenha() {
-		return this.senha;
+		return senha;
 	}
 
 	public void setSenha(String senha) {
@@ -96,12 +97,12 @@ public class UsuarioEntity implements Serializable {
 		this.ativo = ativo;
 	}
 
-	public PessoaEntity getPessoaEntity() {
-		return pessoaEntity;
+	public PessoaEntity getPessoa() {
+		return pessoa;
 	}
 
-	public void setPessoaEntity(PessoaEntity pessoaEntity) {
-		this.pessoaEntity = pessoaEntity;
+	public void setPessoa(PessoaEntity pessoa) {
+		this.pessoa = pessoa;
 	}
 
 }
