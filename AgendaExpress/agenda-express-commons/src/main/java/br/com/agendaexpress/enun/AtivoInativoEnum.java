@@ -3,7 +3,9 @@ package br.com.agendaexpress.enun;
 public enum AtivoInativoEnum {
 	ATIVO("S"),
 
-	INATIVO("N");
+	INATIVO("N"),
+
+	PENDENTE("P");
 
 	private String value;
 

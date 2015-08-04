@@ -74,7 +74,7 @@ public class UsuarioService {
 		
 		//TODO CHAMAR METODO DE CRIAÇÃO DE AGENDA
 		usuarioEntity.setPessoa(pessoaSalva);
-		usuarioEntity.setAtivo(AtivoInativoEnum.ATIVO.getValue());
+		usuarioEntity.setAtivo(AtivoInativoEnum.PENDENTE.getValue());
 		usuarioDAO.save(usuarioEntity);
 		System.out.println();
 	}

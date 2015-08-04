@@ -10,7 +10,6 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
 import br.com.agendaexpress.Exception.RestException;
 import br.com.agendaexpress.beans.BusinessExceptionBean;
@@ -24,9 +23,6 @@ import br.com.agendaexpress.service.UsuarioService;
 @Path("/usuario")
 public class UsuarioController {
 
-	@Autowired
-	private UsuarioService usuarioService2;
-	
 	@POST
 	@Path("/add")
 	@Produces(MediaType.APPLICATION_JSON)
@@ -118,24 +114,22 @@ public class UsuarioController {
 		return Response.status(200).entity(usuario).build();
 	}
 
-	//add
+	// add
 	/*
-	  var usuario = new Object(); var pessoa = new Object(); var pessoaFisica =
-	  new Object();
-	  
-	  pessoaFisica.cpf=37009779805; pessoaFisica.nome="Alexandre Genka";
-	  
-	  pessoa.pessoaFisica = pessoaFisica;
-	  
-	  usuario.email="xande.genka@gmail.com"; usuario.login="difosal";
-	  usuario.senha="senha"; usuario.pessoaBean=pessoa;
-	  JSON.stringify(usuario);
+	 * var usuario = new Object(); var pessoa = new Object(); var pessoaFisica =
+	 * new Object();
+	 * 
+	 * pessoaFisica.cpf=37009779805; pessoaFisica.nome="Alexandre Genka";
+	 * 
+	 * pessoa.pessoaFisica = pessoaFisica;
+	 * 
+	 * usuario.email="xande.genka@gmail.com"; usuario.login="difosal";
+	 * usuario.senha="senha"; usuario.pessoaBean=pessoa;
+	 * JSON.stringify(usuario);
 	 */
 
-/*	seguir
-	var seguirBean = new Object();
-	seguirBean.idUsuarioSeguidor = 1;
-	seguirBean.idUsuario=1;
-	JSON.stringify(seguirBean);
-*/
+	/*
+	 * seguir var seguirBean = new Object(); seguirBean.idUsuarioSeguidor = 1;
+	 * seguirBean.idUsuario=1; JSON.stringify(seguirBean);
+	 */
 }
