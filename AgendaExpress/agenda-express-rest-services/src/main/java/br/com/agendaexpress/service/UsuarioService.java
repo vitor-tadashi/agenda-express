@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import br.com.agendaexpress.beans.UsuarioBean;
+import br.com.agendaexpress.commons.util.HashUtil;
 import br.com.agendaexpress.dao.PessoaDAO;
 import br.com.agendaexpress.dao.PessoaFisicaDAO;
 import br.com.agendaexpress.dao.PessoaJuridicaDAO;
@@ -25,6 +26,7 @@ import br.com.agendaexpress.entity.UsuarioEntity;
 import br.com.agendaexpress.enun.AtivoInativoEnum;
 import br.com.agendaexpress.exceptions.BusinessException;
 import br.com.agendaexpress.exceptions.DAOException;
+import br.com.agendaexpress.util.EmailUtils;
 
 @Service
 @Transactional
@@ -38,10 +40,10 @@ public class UsuarioService {
 
 	@Autowired
 	private PessoaDAO pessoaDAO;
-	
+
 	@Autowired
 	private PessoaJuridicaDAO pessoaJuridicaDAO;
-	
+
 	@Autowired
 	private PessoaFisicaDAO pessoaFisicaDAO;
 
@@ -49,34 +51,50 @@ public class UsuarioService {
 			.mapNulls(false).build().getMapperFacade();
 
 	public UsuarioService() {
-	} 
+	}
 
 	public void addUsuario(UsuarioBean usuarioBean) throws DAOException,
 			BusinessException {
 		UsuarioEntity usuarioEntity = mapper.map(usuarioBean,
 				UsuarioEntity.class);
 		System.out.println();
+		UsuarioEntity email = new UsuarioEntity();
+		email.setEmail(usuarioBean.getEmail());
+		UsuarioEntity exists = usuarioDAO.findUsuarioUniq(email);
+		if(exists != null){
+			if(exists.getAtivo().equals(AtivoInativoEnum.ATIVO.getValue())){
+				throw new BusinessException("E-mail já cadastrado");
+			}
+			if(exists.getAtivo().equals(AtivoInativoEnum.PENDENTE.getValue())){
+				throw new BusinessException("Aguardando confirmação enviado para o E-mail " + usuarioBean.getEmail());
+			}
+		}
 		PessoaEntity pessoaSalva = pessoaDAO.save(usuarioEntity.getPessoa());
-		
-		if(usuarioBean.getPessoa() != null && usuarioBean.getPessoa().getPessoaFisica() != null){
-			PessoaFisicaEntity pessoaFisicaEntity = mapper.map(usuarioBean.getPessoa().getPessoaFisica(),
-					PessoaFisicaEntity.class);
+
+		if (usuarioBean.getPessoa() != null
+				&& usuarioBean.getPessoa().getPessoaFisica() != null) {
+			PessoaFisicaEntity pessoaFisicaEntity = mapper.map(usuarioBean
+					.getPessoa().getPessoaFisica(), PessoaFisicaEntity.class);
 			pessoaFisicaEntity.setIdPessoa(pessoaSalva.getIdPessoa());
 			pessoaFisicaDAO.save(pessoaFisicaEntity);
 		}
-		
-		if(usuarioBean.getPessoa() != null && usuarioBean.getPessoa().getPessoaJuridica() != null){
-			PessoaJuridicaEntity pessoaJuridicaEntity = mapper.map(usuarioBean.getPessoa().getPessoaJuridica(),
+
+		if (usuarioBean.getPessoa() != null
+				&& usuarioBean.getPessoa().getPessoaJuridica() != null) {
+			PessoaJuridicaEntity pessoaJuridicaEntity = mapper.map(usuarioBean
+					.getPessoa().getPessoaJuridica(),
 					PessoaJuridicaEntity.class);
 			pessoaJuridicaEntity.setIdPessoa(pessoaSalva.getIdPessoa());
 			pessoaJuridicaDAO.save(pessoaJuridicaEntity);
 		}
-		
-		//TODO CHAMAR METODO DE CRIAÇÃO DE AGENDA
+
+		// TODO CHAMAR METODO DE CRIAÇÃO DE AGENDA
 		usuarioEntity.setPessoa(pessoaSalva);
 		usuarioEntity.setAtivo(AtivoInativoEnum.PENDENTE.getValue());
 		usuarioDAO.save(usuarioEntity);
-		System.out.println();
+		
+		new EmailUtils().enviaEmailConfirmacao(usuarioBean.getEmail(),
+				usuarioEntity.getIdUsuario());
 	}
 
 	public void delUsuario(Integer id) throws DAOException {
@@ -152,6 +170,27 @@ public class UsuarioService {
 		seguidor.setId(new SeguidorEntityPK(usuario.getPessoa().getIdPessoa(),
 				usuarioSeguidor.getPessoa().getIdPessoa()));
 		seguidorDAO.save(seguidor);
+	}
+
+	public void confirm(String email, Integer id) throws DAOException, BusinessException {
+		if(email == null && email.isEmpty()){
+			throw new BusinessException("Email null");
+		}
+		if(id == null){
+			throw new BusinessException("id null");
+		}
+		UsuarioEntity usuario = new UsuarioEntity();
+		usuario.setEmail(email);
+		UsuarioEntity exists = usuarioDAO.findUsuarioUniq(usuario);
+		if(exists != null){
+			int hash = HashUtil.hash32(exists.getIdUsuario().toString());
+			if(hash == id){
+				exists.setAtivo(AtivoInativoEnum.ATIVO.getValue());
+				usuarioDAO.save(exists);
+			}else{
+				throw new BusinessException("Código de ativação inválido.");
+			}
+		}
 	}
 
 }

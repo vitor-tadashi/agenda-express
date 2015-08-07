@@ -25,4 +25,19 @@ public class UsuarioDAO extends GenericDAO<UsuarioEntity, Integer> {
 		}
 		return result;
 	}
+
+	public UsuarioEntity findUsuarioUniq(UsuarioEntity usuarioEntity) {
+
+		FilterQueryUtil<UsuarioEntity> filterUtil = new FilterQueryUtil<UsuarioEntity>("u");
+		String queryStr = filterUtil.buildQueryFilter(usuarioEntity);
+		TypedQuery<UsuarioEntity> query = em.createQuery(queryStr,
+				UsuarioEntity.class);
+		query = filterUtil.fillQueryParameters(query);
+		List<UsuarioEntity> result = query.getResultList();
+		if(result != null && result.isEmpty()){
+			return null;
+		}
+		return result.get(0);
+	}
+	
 }
