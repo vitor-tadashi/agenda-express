@@ -1,5 +1,7 @@
 package br.com.agendaexpress.service;
 
+import java.util.List;
+
 import ma.glasnost.orika.MapperFacade;
 import ma.glasnost.orika.impl.DefaultMapperFactory;
 
@@ -38,8 +40,9 @@ public class AvaliacaoService {
 		avaliacaoDAO.deleteById(id);
 	}
 	
-	public void findAvaliacao(AvaliacaoBean avaliacaoBean) throws DAOException {
+	public List<AvaliacaoBean> findAvaliacao(AvaliacaoBean avaliacaoBean) throws DAOException {
 		AvaliacaoEntity avaliacaoEntity = mapper.map(avaliacaoBean, AvaliacaoEntity.class);
-		avaliacaoDAO.findAvaliacao(avaliacaoEntity);
+		
+		return mapper.mapAsList(avaliacaoDAO.findAvaliacao(avaliacaoEntity), AvaliacaoBean.class);
 	}
 }

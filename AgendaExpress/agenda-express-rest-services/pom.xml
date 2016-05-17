@@ -100,15 +100,15 @@
 
 
 
+
+
+
+
 		<dependency>
 			<groupId>br.com.agendaexpress</groupId>
 			<artifactId>agenda-express-commons</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
-
-
-
-
 	</dependencies>
 	<packaging>war</packaging>
 

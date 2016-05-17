@@ -11,8 +11,6 @@ import javax.ws.rs.core.MediaType;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import br.com.agendaexpress.Exception.RestException;
 import br.com.agendaexpress.beans.AvaliacaoBean;
